@@ -1,4 +1,4 @@
-//Original Paths
+//Sign in page for logging in to the website using gmail, Microsoft, or Facebook Accounts. The sign in was created using a Clerk Dashboard
 // @clerk/nextjs
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
