@@ -1,17 +1,13 @@
 // Creating and styling the pickup and destination search bar on the left side of the screen, Uses React Google Places Autocomplete to autocomplete locations when users begin typing 
 
-//Original File Paths
-//@/context/DestinationContext
-//@/context/SourceContext
-
 "use client"
 import { DestinationContex } from '/context/DestinationContext';
 import { SourceContext } from '/context/SourceContext';
 import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-//Function to get the longitude and lattitude of the pickup and dropoff locations
 
+//Function to get the longitude and lattitude of the pickup and dropoff locations
 function Inputitem({ type }) {
     const [value, setValue] = useState(null);
     const [placeholder, setPlaceholder] = useState(null);

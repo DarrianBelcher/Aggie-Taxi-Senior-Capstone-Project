@@ -5,7 +5,7 @@ export const CarListData = [
         name: 'Taxi X',
         seat: 4,
         desc:'Affordable, Everyday rides',
-        amount: 1.1,
+        amount: 4.1,
         image: '/TaxiX.png'
     },
 
@@ -14,7 +14,7 @@ export const CarListData = [
         name: 'Taxi Comfort',
         seat: 4,
         desc: 'Newer Taxis with extra legroom',
-        amount: 1.6,
+        amount: 6.6,
         image: '/TaxiComfort.png'
     },
 
@@ -23,7 +23,7 @@ export const CarListData = [
         name: 'Taxi XL',
         seat: 6,
         desc: 'Affordable rides for groups of up to 6',
-        amount: 1.9,
+        amount: 8.9,
         image: '/TaxiXL.png'
     },
 ]

@@ -1,4 +1,4 @@
-// Search section that uses the pickup and dropoff destinations to calculate the distance between the two places 
+//Creating the search section that allows users to input their pickup and drop off locaitons  
 //@/context/SourceContext
 //@/context/DestinationContext
 
@@ -10,25 +10,23 @@ import { DestinationContex } from '/context/DestinationContext';
 import CarListOptions from './CarListOptions';
 
 
+
+
+
 function SearchSection() {
     const { source, setSource } = useContext(SourceContext);
     const { destination, setDestination } = useContext(DestinationContex);
     const [distance, setDistance] = useState();
     const calculateDistance = () => {
-    const dist = google.maps.geometry.spherical.computeDistanceBetween({ lat: source.lat, lng: source.lng }, { lat: destination.lat, lng: destination.lng 
-    }
+        const dist = google.maps.geometry.spherical.computeDistanceBetween({ lat: source.lat, lng: source.lng }, { lat: destination.lat, lng: destination.lng }
         )
-        setDestination(dist * 0.000621374)
-        setDistance(dist * 0.000621374)
-
-        module.exports = {
-            dist,
-            distance
-        }
+        
+        const convertedDistance = dist * 0.000621374;
+        console.log("Calculated distance:", convertedDistance);
+        setDistance(convertedDistance);
+        
 
     }
-
-
 
 
     useEffect(() => {
@@ -49,10 +47,12 @@ function SearchSection() {
                 <p className='text-[20px] font-bold'>Get a Taxi</p>
                 <Inputitem type='source' />
                 <Inputitem type='destination' />
-                <button className='p-3 bg-black w-full mt-5 text-white rounded-lg' onClick={()=>calculateDistance()}
+                <button className='p-3 bg-black w-full mt-5 text-white rounded-lg'
+
+                    onClick={() => calculateDistance()}
                 >Search</button>
             </div>
-            {distance? <CarListOptions distance={distance}/>:null}
+            {distance ? <CarListOptions distance={distance} /> : null}
         </div>
     )
 }
