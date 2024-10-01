@@ -1,5 +1,13 @@
-//Used to store Destination Information
+"use client";
+import { createContext, useState } from 'react';
 
-import { createContext } from "react";
+export const DestinationContext = createContext();
 
-export const DestinationContex=createContext();
+export const DestinationProvider = ({ children }) => {
+  const [destination, setDestination] = useState({ name: '', lat: null, lng: null });
+  return (
+    <DestinationContext.Provider value={{ destination, setDestination }}>
+      {children}
+    </DestinationContext.Provider>
+  );
+};

@@ -2,7 +2,8 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "../components/Header";
-import { SourceContext } from "../context/SourceContext";
+import { SourceProvider } from "../context/SourceContext"; // Import the SourceProvider
+import { DestinationProvider } from "../context/DestinationContext"; // Import the DestinationProvider
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -13,12 +14,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-   
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Header></Header>
-          {children}</body>
+          <Header />
+          {/* Wrap the app with SourceProvider and DestinationProvider */}
+          <SourceProvider>
+            <DestinationProvider>
+              {children} {/* All child components will have access to source and destination contexts */}
+            </DestinationProvider>
+          </SourceProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

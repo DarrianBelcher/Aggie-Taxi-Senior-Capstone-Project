@@ -1,12 +1,12 @@
-//Clerk Code used to Protect Our Application from potential Attacks
+// Clerk Code used to Protect Our Application from potential Attacks
 
 import { authMiddleware } from "@clerk/nextjs";
 
 // See https://clerk.com/docs/references/nextjs/auth-middleware
 // for more information about configuring your Middleware
 export default authMiddleware({
-    // Allow signed out users to access the specified routes:
-    // publicRoutes: ['/anyone-can-visit-this-route'],
+    // Make /api/rides accessible to everyone (both signed-in and signed-out users)
+    publicRoutes: ['/api/rides'],
 });
 
 export const config = {
