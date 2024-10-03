@@ -1,3 +1,4 @@
+//'Page JS'
 import React from 'react';
 
 function PaymentConfirmation() {
