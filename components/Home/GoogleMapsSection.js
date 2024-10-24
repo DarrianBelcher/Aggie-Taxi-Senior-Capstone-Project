@@ -32,29 +32,39 @@ function GoogleMapsSection() {
         setMap(null);
     }, []);
 
+    // Check if source and destination are valid
+    const isValidLocation = (location) => {
+        return location && typeof location.lat === 'number' && typeof location.lng === 'number';
+    };
+
     useEffect(() => {
-        if (source && source.lat && map) {
+        if (isValidLocation(source) && map) {
             map.panTo({ lat: source.lat, lng: source.lng });
             setCenter({ lat: source.lat, lng: source.lng });
         }
 
-        if (source && destination) {
+        if (isValidLocation(source) && isValidLocation(destination)) {
             directionRoute();
         }
     }, [source, map]);
 
     useEffect(() => {
-        if (destination && destination.lat && map) {
+        if (isValidLocation(destination) && map) {
             setCenter({ lat: destination.lat, lng: destination.lng });
         }
 
-        if (source && destination) {
+        if (isValidLocation(source) && isValidLocation(destination)) {
             directionRoute();
         }
     }, [destination, map]);
 
     // Function to draw a route between the pickup and dropoff locations
     const directionRoute = () => {
+        if (!isValidLocation(source) || !isValidLocation(destination)) {
+            console.error('Invalid source or destination coordinates');
+            return;
+        }
+
         const DirectionService = new google.maps.DirectionsService();
 
         DirectionService.route({
@@ -80,7 +90,7 @@ function GoogleMapsSection() {
             onUnmount={onUnmount}
             options={{ mapId: 'b896538671b73457' }}
         >
-            {source && source.lat && (
+            {isValidLocation(source) && (
                 <MarkerF
                     position={{ lat: source.lat, lng: source.lng }}
                     icon={{
@@ -99,7 +109,7 @@ function GoogleMapsSection() {
                 </MarkerF>
             )}
 
-            {destination && destination.lat && (
+            {isValidLocation(destination) && (
                 <MarkerF
                     position={{ lat: destination.lat, lng: destination.lng }}
                     icon={{
